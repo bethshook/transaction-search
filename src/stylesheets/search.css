@@ -8,10 +8,24 @@ input{
   display: block;
 }
 
+nav{
+  box-shadow: 2px 2px 5px 2px #888888;
+  margin-bottom: 50px;
+  position: relative;
+  height: 60px;
+}
+
+.logo{
+  position: absolute;
+  top: 30px;
+  left: 60px;
+}
+
 .search-container{
-  width: 600px;
+  max-width: 600px;
   margin: 0 auto;
   text-align: left;
+  padding: 0 10px;
 }
 
 .transaction{
