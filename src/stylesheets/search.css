@@ -1,0 +1,33 @@
+
+h1{
+  text-align: center;
+}
+
+input{
+  margin: 20px auto 10px auto;
+  display: block;
+}
+
+.search-container{
+  width: 600px;
+  margin: 0 auto;
+  text-align: left;
+}
+
+.transaction{
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+  margin: 5px 0;
+}
+
+.transaction div, .heading div{
+  width: 33%;
+}
+
+.heading{
+  font-weight: bold;
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: space-between;
+}

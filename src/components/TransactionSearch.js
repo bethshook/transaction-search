@@ -1,5 +1,5 @@
 import React from 'react';
-import '../stylesheets/ui.scss';
+import '../stylesheets/search.css';
 import Transaction from './Transaction';
 
 export class TransactionSearch extends React.Component {
@@ -7,29 +7,38 @@ export class TransactionSearch extends React.Component {
     constructor(){
         super();
         this.state = {
-            message: "before state change"
+            search: ''
         };
-        this.updateMessage = this.updateMessage.bind(this);
+        this.updateSearch = this.updateSearch.bind(this);
     }
-    updateMessage() {
-        this.setState({
-            message: "after state change"
-        });
+    updateSearch(event) {
+        this.setState({search: event.target.value});
     }
 
     render() {
+        let filteredTransactions = this.props.transactions.filter(
+            (transaction) => {
+                return (transaction.date.toLowerCase().indexOf(this.state.search.toLowerCase()) !==-1)
+                    || (transaction.amount.toString().indexOf(this.state.search) !== -1)
+                    || (transaction.card_last_four.indexOf(this.state.search) !== -1);
+            }
+        );
         return (
             <div>
-                <p>test</p>
-                <h3>Hello {this.state.message}!</h3>
+                <input id="search-text" type="text" value={this.state.search} onChange={this.updateSearch} />
+                <br />
+                <div className={'search-container'}>
+                    <div className={'heading'}>
+                        <div>Amount</div>
+                        <div>Date and Time</div>
+                        <div>Last Four Digits</div>
+                    </div>
 
-                <input id="search-text" type="text" onKeyPress={this.updateMessage}/>
-                <ul>
-                    {this.props.transactions.map((transaction)=> {
-                       return <Transaction transaction={transaction} />
+                    {filteredTransactions.map((transaction)=> {
+                       return <Transaction transaction={transaction} key={transaction.id} />
                        //the first transaction refers to this.props.contact from Contact component
                     }) }
-                </ul>
+                </div>
             </div>
         )
     }
